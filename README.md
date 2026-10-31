@@ -1,217 +1,124 @@
-# Awesome-Real-Time-Streaming-Data-Ingestion
+<div align="center">
 
-## Top Real-Time Streaming Data Ingestion Ecosystem
+<img src="./assets/banner.svg" alt="Awesome Real-Time Endpoint Query & Investigation Banner" width="100%" />
 
+<br/>
+<br/>
 
+<a href="https://github.com/ishandutta2007/Awesome-Awesome-Awesome"><img src="https://img.shields.io/badge/Awesome-%E2%9C%94-blueviolet?style=flat-square&logo=github" alt="Awesome"/></a><a href="https://discord.gg/jc4xtF58Ve"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord" /></a>
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/ishandutta2007/Awesome-Awesome-Awesome)
+[![Tracked Category](https://img.shields.io/badge/Category-Endpoint%20Security%20%26%20Query-blue.svg)](https://github.com/ishandutta2007/Awesome-Real-Time-Endpoint-Query-Investigation)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+<a href="https://github.com/ishandutta2007"><img alt="GitHub followers" src="https://img.shields.io/github/followers/ishandutta2007?label=Follow" /></a>
 
-**Curated List of SaaS Products & Open-Source GitHub Projects**  
+<p align="center">
+  <b>⚡ Curated directory of leading SaaS platforms and open-source projects for real-time endpoint querying, live threat hunting, osquery fleet orchestration, and distributed digital forensics (DFIR). 🔍</b>
+</p>
 
-*Focused on Continuous Ingestion, Change Data Capture & Self-Hosted Streaming Platforms*  
-
-**Last updated: November 2026**
-
-
-
-This repository tracks notable **SaaS platforms** and **open-source projects** for **Real-Time Streaming Data Ingestion**. These tools enable organizations to continuously capture events, database changes, and telemetry from source systems and deliver them to downstream consumers—warehouses, analytics engines, or applications—with low latency and exactly-once guarantees.
-
-
-
-**Examples** include Snowflake Snowpipe Streaming, Confluent Cloud, Redpanda Cloud, AWS Kinesis, Azure Event Hubs, Google Cloud Pub/Sub, Decodable, Estuary, and Striim (the category leaders).
-
-
-
-**Open-source emphasis**: Real-Time Streaming Data Ingestion is a domain where open-source tooling is **mature at the transport layer (Kafka) but fragmented at the ingestion and processing layers**. **Apache Kafka** remains the de facto standard for durable event streaming, with **Kafka 4.0 going KRaft-only** (no ZooKeeper) and **4.2 declaring share groups production-ready** for queue-style consumption . **Apache Pulsar** offers a compelling alternative with native multi-tenancy and geo-replication, but its Kafka-on-Pulsar compatibility layer was **archived in January 2024**, pushing Kafka compatibility to StreamNative's commercial products . For **Change Data Capture (CDC)**, **Debezium** is the open-source standard—it reads transaction logs directly and emits row-level change events to Kafka with sub-second latency . For teams wanting to **replace the entire stack** (Debezium + Kafka + Flink + serving DB), **RisingWave** provides a single system that ingests from databases, streams, and webhooks, processes incrementally, and serves results at 10–20ms p99 latency . The critical caveat: **managed platforms differentiate on operational simplicity**—Confluent Cloud and Redpanda Cloud handle broker management, while **Striim** offers GUI-based pipeline configuration with enterprise SLAs . Open-source requires you to own the Kafka infrastructure, schema registry, and connector operations.
-
-
-
-Contributions welcome! Open a PR to add/update entries. Keep descriptions factual and link to official sites.
-
-
-
-## Table of Contents
-
-- [SaaS/Hosted Platforms](#saas-products)
-
-- [Open-Source GitHub Projects](#open-source-github-projects)
-
-- [How to Contribute](#how-to-contribute)
-
-- [Disclaimer](#disclaimer)
-
-
-
-## SaaS/Hosted Platforms
-
-
-
-- **[Confluent Cloud](https://www.confluent.io/)**  
-
-  Fully managed Kafka service with Schema Registry, Kafka Connect, ksqlDB, and Stream Governance; now part of IBM following the March 2026 acquisition. The most mature managed Kafka offering with the deepest ecosystem.
-
-
-
-- **[Redpanda Cloud](https://redpanda.com/)**  
-
-  Managed Redpanda service with BYOC deployment options; provides Kafka-compatible API with lower operational overhead and lower latency than JVM-based Kafka. **Community Edition uses BSL 1.1** (converts to Apache 2.0 after 4 years) .
-
-
-
-- **[Amazon Kinesis](https://aws.amazon.com/kinesis/)**  
-
-  AWS's serverless streaming service with shard-based provisioning; strict per-shard ordering and Enhanced Fan-Out for low-latency consumers.
-
-
-
-- **[Azure Event Hubs](https://azure.microsoft.com/en-us/products/event-hubs)**  
-
-  Azure's event streaming platform with native Kafka protocol compatibility; **note**: Microsoft lists Kafka transactions, exactly-once semantics, and AdminClient topic management as unsupported .
-
-
-
-- **[Google Cloud Pub/Sub](https://cloud.google.com/pubsub)**  
-
-  Fully serverless, globally auto-sharding message queue with no partition provisioning required; strong for unpredictable traffic and zero-ops pipelines.
-
-
-
-- **[Snowflake Snowpipe Streaming](https://docs.snowflake.com/)**  
-
-  Continuous, low-latency data ingestion into Snowflake tables; designed for streaming use cases where data must be queryable within seconds.
-
-
-
-- **[Decodable](https://www.decodable.co/)**  
-
-  Managed stream processing platform built on Apache Flink; connects to Kafka, Pulsar, and other sources for real-time ETL and event-driven applications.
-
-
-
-- **[Estuary](https://estuary.dev/)**  
-
-  Real-time data integration platform with CDC and streaming pipelines; positions itself as a managed alternative to batch-oriented ELT tools.
-
-
-
-- **[Striim](https://www.striim.com/)**  
-
-  Commercial real-time data integration platform with CDC capabilities; connects to source databases, applies transformations, and delivers to Kafka, cloud warehouses, or streaming systems. **GUI-based configuration and enterprise support SLAs** differentiate it from open-source CDC tools . Pricing starts around **$50,000 annually** .
-
-
-
-## Open-Source GitHub Projects
-
-
-
-### Transport Layer (Event Streaming)
-
-
-
-- **[Apache Kafka](https://github.com/apache/kafka)**  
-
-  The foundational open-source event streaming platform (Apache 2.0); distributed, partitioned, replicated commit log. **Kafka 4.0 removed ZooKeeper entirely** (KRaft only), and **4.2 declared share groups production-ready** for queue-style consumption . The standard for durable event transport with the deepest connector ecosystem (Kafka Connect).
-
-
-
-- **[Apache Pulsar](https://github.com/apache/pulsar)**  
-
-  Open-source distributed pub/sub messaging and streaming platform (Apache 2.0) with **native multi-tenancy** and **separate compute/storage layers** (brokers + BookKeeper) . **Critical caveat**: Kafka-on-Pulsar compatibility was **archived in January 2024**; Kafka compatibility now requires StreamNative's commercial Ursa/KSN products . Production deployment requires **6 machines minimum** (3 metadata nodes + 3 broker/bookie nodes) . Best for multi-tenant, multi-region platforms.
-
-
-
-- **[Redpanda](https://github.com/redpanda-data/redpanda)**  
-
-  Kafka-compatible streaming platform written in C++ (no JVM, no ZooKeeper); provides lower latency and operational simplicity. **Community Edition uses BSL 1.1** (source-available, not OSI-approved) . **Not a drop-in replacement**—test clients, Kafka Connect connectors, and transactions before migration .
-
-
-
-### Change Data Capture (CDC)
-
-
-
-- **[Debezium](https://github.com/debezium/debezium)**  
-
-  The **open-source standard for CDC** (Apache 2.0); built on Kafka Connect, reads transaction logs directly (WAL, redo log, binlog), and emits row-level change events as JSON or Avro to Kafka . **Sub-second latency** from database commit to Kafka topic . **Operational burden is high**—you manage Kafka, Kafka Connect workers, connector configurations, schema registry, and failure recovery . Best for teams with Kafka expertise wanting maximum flexibility.
-
-
-
-- **[Flink CDC](https://github.com/ververica/flink-cdc-connectors)**  
-
-  Streaming data integration tool for CDC from databases into Flink; alternative to Debezium for teams already using Flink for stream processing.
-
-
-
-### Unified Streaming Stacks (Replace Kafka + Flink + Serving DB)
-
-
-
-- **[RisingWave](https://github.com/risingwavelabs/risingwave)**  
-
-  Open-source **event streaming platform** (Apache 2.0) that **replaces the traditional stack** (Debezium + Kafka + Flink + serving DB) with a single system . Features: **ingest from databases (native CDC), event streams (Kafka, Pulsar, Kinesis), webhooks, and batch sources**; **incremental computation** with end-to-end freshness under 100ms; **serves results at 10–20ms p99** via PostgreSQL wire protocol; **writes to Apache Iceberg** for long-term retention . **Internal state stored in object storage** (S3) for cost efficiency (~100x cheaper than RAM) . Docker Compose, Kubernetes Helm, and Operator deployment. **Best for teams wanting a single system for ingest, process, and serve**—but it is a database-like system, not a pure transport layer.
-
-
-
-### ETL & Pipeline Tools (CDC-Adjacent)
-
-
-
-- **[Airtruct](https://pkg.go.dev/github.com/sananguliyev/airtruct@v0.2.1)**  
-
-  Open-source **lightweight data pipeline tool** (Apache 2.0, single binary) positioned as a self-hosted alternative to Airbyte and Fivetran . Features: **visual pipeline builder UI**, Bloblang DSL transformations, **Kafka, HTTP, AMQP, MySQL CDC, PostgreSQL sources**, coordinator/worker architecture for horizontal scaling, **MCP integration** for AI assistants . **Best for teams wanting a lightweight, self-hosted ETL tool** with CDC support—but it is ETL-focused rather than a pure streaming platform.
-
-
-
-### Additional Strong Open-Source Options
-
-
-
-- **kafka.do** — Kafka-compatible streaming platform on Cloudflare Workers with Durable Objects (MIT) . Uses SQLite for hot data, R2 for archives; **early-stage/experimental**—supports Kafka wire protocol but not production-grade yet.
-
-- **Chronik** — Kafka-compatible platform with built-in SQL, full-text search, and vector search per topic . **Benchmarks withdrawn pending re-measurement**—verify before adoption.
-
-- **SeaTunnel** — Apache incubating project for data integration with CDC support; alternative to Debezium + Kafka for teams wanting an integrated tool .
-
-
-
-**Frameworks for building custom systems**: For **pure transport with the deepest ecosystem**, Apache Kafka (KRaft only in 4.x) . For **CDC into Kafka**, Debezium (accepting operational complexity) . For **replacing the full stack** (CDC + processing + serving), RisingWave . For **multi-tenant platforms needing geo-replication**, Apache Pulsar (accepting 6-machine minimum and no open Kafka compatibility) . For **managed Kafka without operations**, Confluent Cloud or Redpanda Cloud (BSL caveat) . No open-source project matches the **managed simplicity** of Confluent Cloud or Striim's GUI-based pipeline configuration—those are commercial advantages.
-
-
-
-## How to Contribute
-
-
-
-1. Fork the repo.
-
-2. Add/edit entries in `README.md` (follow existing format).
-
-3. Include: name, link, 1–2 sentence description, and whether it's SaaS or open-source.
-
-4. Submit PR with a short explanation.
-
-
-
-Star the repo if you find it useful!
-
-
-
-## Disclaimer
-
-
-
-- This is a **community-curated** list — not exhaustive and not an endorsement.
-
-- Real-time streaming ingestion platforms handling production data must comply with organizational security policies and data governance requirements; **CDC connectors require read access to database transaction logs**—scope credentials to minimum necessary permissions.
-
-- **Open-source streaming ingestion is mature at the transport layer but requires operational investment**—Kafka and Debezium provide production-grade event transport and CDC , and RisingWave consolidates the stack . However, **managed platforms differentiate on operational simplicity**—Confluent Cloud handles broker management, and Striim offers GUI-based pipeline configuration with SLAs . **Redpanda Community Edition uses BSL 1.1** (source-available, not OSI-approved) . **Pulsar's Kafka compatibility was archived**—verify protocol compatibility before migration .
-
-- Verify license terms for commercial use; Kafka uses Apache 2.0, Debezium uses Apache 2.0, RisingWave uses Apache 2.0, and Redpanda Community uses BSL 1.1 .
-
-
+</div>
 
 ---
 
+## 📑 Table of Contents
 
+- [📊 Sector Overview & Market Dynamics](#-sector-overview--market-dynamics)
+- [☁️ SaaS/Hosted Platforms](#️-saashosted-platforms)
+- [🔓 Open-Source GitHub Projects](#-open-source-github-projects)
+- [🏗️ Key Architectural Considerations](#️-key-architectural-considerations)
+- [🤝 How to Contribute](#-how-to-contribute)
+- [💖 Support](#-support)
+- [📈 Star History](#--star-history)
+- [⚠️ Disclaimer](#️-disclaimer)
 
-**Made for data engineers, platform teams, and organizations building real-time data pipelines.**  
+---
 
-Let's make streaming data ingestion more open, but with clear eyes about the operational complexity and licensing trade-offs that define each path.
+## 📊 Sector Overview & Market Dynamics
+
+The global **Endpoint Detection and Response (EDR) and Endpoint Query Investigation market** is valued at approximately **$5.0B – $5.7B in 2025** and is projected to expand to **$6.3B – $7.2B by 2026**, growing at a rapid CAGR of ~22–25%. The broader **Endpoint Security Platform (EPP/EDR/XDR)** market is estimated between **$17B and $22B**.
+
+Market concentration & competitive dynamics:
+- 🏢 **Enterprise Platform Tier (Moderately Concentrated)**: Monopolized by large-cap security juggernauts (Microsoft, CrowdStrike, SentinelOne, Broadcom) offering integrated suites where live query capabilities sit on top of massive proprietary continuous kernel telemetry streams.
+- 🧩 **Specialized Fleet & Query Tier (Fragmented & Open)**: Active innovation exists across independent fleet managers and open instrumentation tools (Tanium, FleetDM, Kolide, Uptycs), heavily anchored by the open-source **osquery** SQL schema standard.
+
+---
+
+## ☁️ SaaS/Hosted Platforms
+
+The following hosted commercial platforms provide fleet-scale live query interrogation, threat hunting, and distributed incident investigation. Ranked descending by company scale (market capitalization / valuation):
+
+| Platform | Company Size (Market Cap / Valuation) 🏛️ | Starting Tier Pricing 💵 | Free Tier / Free Trial Limits ⏱️ | Key Features & Investigation Capabilities 🛡️ |
+| :--- | :--- | :--- | :--- | :--- |
+| **[Microsoft Defender Advanced Hunting](https://learn.microsoft.com/en-us/microsoft-365/security/defender-endpoint/)** | ~$3.1 Trillion *(Public: MSFT)* | **$5.20 / user / month** (Defender for Endpoint Plan 2 standalone; covers up to 5 devices/user) | **90-day free trial** with full enterprise evaluation capabilities (or 30 days via direct Azure tenant portal) | ⚡ Query-based live threat hunting using Kusto Query Language (KQL) across up to 30 days of raw endpoint telemetry. Includes automated investigation & response (AIR). |
+| **[Carbon Black Live Query](https://www.broadcom.com/products/security/endpoint-security)** | ~$820 Billion *(Broadcom: AVGO)* | **~$50.00 – $70.00 / endpoint / year** (Carbon Black Cloud Advanced tier) | **30-day free evaluation** (extends to 90 days for specific qualified enterprise POCs) | 🎯 Cloud-managed osquery integration inside NGAV/EDR; features visual Query Builder across 10 core tables and raw SQL query execution across OS tables. |
+| **[CrowdStrike Falcon Live Query](https://www.crowdstrike.com/)** | ~$85 Billion *(Public: CRWD)* | **$184.99 / endpoint / year** (Included in Falcon Enterprise tier with Falcon Insight XDR) | **15-day free trial** (Full sandbox trial of Falcon Enterprise platform) | 🦅 Distributed on-demand SQL queries against active online hosts via single lightweight Falcon sensor; queries processes, network connections, memory, and hashes with Charlotte AI assistance. |
+| **[Tanium Interact](https://www.tanium.com/)** | ~$9 Billion *(Private valuation; >$700M ARR)* | **$20.00 – $24.00 / endpoint / year** (Core Platform; scales down to $8–$10 for 50k+ fleets; 2,000 endpoint min commitment) | **30-day guided Proof of Concept (POC)** / evaluation tenant via sales | 🔄 Proprietary linear-chain architecture enabling natural language and scripted interrogation across hundreds of thousands of endpoints in seconds without pre-indexing data. |
+| **[SentinelOne Deep Visibility](https://www.sentinelone.com/)** | ~$8 Billion *(Public: S)* | **$179.99 / endpoint / year** (~$15.00/endpoint/month for Singularity Complete tier) | **30-day full-access free trial** / Singularity platform evaluation | 🔍 Patented Storyline kernel monitoring enabling sub-second live IOC query and retrospective search; uniquely supports forensic queries on offline endpoints via retained historical telemetry. |
+| **[Sophos Live Discover](https://www.sophos.com/)** | ~$3.9 Billion *(Thoma Bravo acquisition)* | **$108.00 – $115.00 / user / year** (Intercept X Advanced with XDR) | **30-day full-featured free trial** across Sophos Central and endpoint agents | 🛡️ osquery-powered SQL hunting engine embedded into Sophos Central Data Lake; pre-built templates for incident response, threat hunting, and compliance auditing. |
+| **[Kolide (by 1Password)](https://www.kolide.com/)** | ~$2 Billion *(1Password valuation)* | **$6.00 / device / month** (Historically $6.00–$7.20/device/month; now part of 1Password Extended Access Management) | **14-day free trial** with full feature access and Slack/IdP integration | 💬 Cloud-native osquery fleet manager featuring Slack and Identity Provider (IdP) integration; user-focused device trust verification and continuous configuration checks. |
+| **[Uptycs](https://www.uptycs.com/)** | ~$600 Million *(Series C valuation)* | **$2.00 / endpoint / month** (Core osquery fleet management; Flight Recorder telemetry add-on ~$1.00/endpoint/month) | **35-day free trial** (Starts with pre-seeded synthetic data before live agent testing) | 📦 Unified CNAPP, XDR, and compliance platform built atop an enterprise osquery distribution; streaming telemetry into a centralized SQL database for continuous auditing. |
+
+---
+
+## 🔓 Open-Source GitHub Projects
+
+The open-source endpoint query landscape is anchored by **osquery** and high-speed DFIR incident response agents. Sorted descending by GitHub stargazers count:
+
+| Repository 📦 | GitHub Stars ⭐ | Primary Purpose & Description 🚀 |
+| :--- | :--- | :--- |
+| **[osquery/osquery](https://github.com/osquery/osquery)** | [![Stars](https://img.shields.io/github/stars/osquery/osquery?style=social&color=white)](https://github.com/osquery/osquery/stargazers) | ⚡ Foundational open-source endpoint instrumentation agent (Apache 2.0 / GPL 2.0). Exposes operating system internals (processes, open sockets, installed software, logged-in users) as high-performance SQL tables. |
+| **[wazuh/wazuh](https://github.com/wazuh/wazuh)** | [![Stars](https://img.shields.io/github/stars/wazuh/wazuh?style=social&color=white)](https://github.com/wazuh/wazuh/stargazers) | 🛡️ Unified open-source XDR, SIEM, and endpoint security monitoring platform (GPL 2.0). Features built-in osquery integration, live command execution, file integrity monitoring (FIM), and incident response rules. |
+| **[fleetdm/fleet](https://github.com/fleetdm/fleet)** | [![Stars](https://img.shields.io/github/stars/fleetdm/fleet?style=social&color=white)](https://github.com/fleetdm/fleet/stargazers) | 🌐 Premier open-source osquery fleet manager and MDM platform (MIT / Core). Provides web UI, CLI (`fleetctl`), TLS enrollment, automated query packs, and compliance policy reporting across large fleets. |
+| **[google/grr](https://github.com/google/grr)** | [![Stars](https://img.shields.io/github/stars/google/grr?style=social&color=white)](https://github.com/google/grr/stargazers) | 🔬 GRR Rapid Response (Apache 2.0). Scalable enterprise incident response and live digital forensics framework built by Google for remote collection of memory, disk artifacts, and distributed live interrogation. |
+| **[Velocidex/velociraptor](https://github.com/Velocidex/velociraptor)** | [![Stars](https://img.shields.io/github/stars/Velocidex/velociraptor?style=social&color=white)](https://github.com/Velocidex/velociraptor/stargazers) | 🦖 Advanced digital forensics and incident response (DFIR) platform (AGPL 3.0). Uses Velociraptor Query Language (VQL) to provide live endpoint hunting, artifact acquisition, and distributed interrogation. |
+| **[kolide/fleet](https://github.com/kolide/fleet)** | [![Stars](https://img.shields.io/github/stars/kolide/fleet?style=social&color=white)](https://github.com/kolide/fleet/stargazers) | 🏛️ Legacy Go-based osquery fleet management server (MIT). Historical predecessor to FleetDM; maintained as a reference archive. |
+| **[palantir/osquery-configuration](https://github.com/palantir/osquery-configuration)** | [![Stars](https://img.shields.io/github/stars/palantir/osquery-configuration?style=social&color=white)](https://github.com/palantir/osquery-configuration/stargazers) | 📋 Production-tested osquery deployment configurations, scheduled query packs, and incident response detection baselines open-sourced by Palantir's InfoSec team (Apache 2.0). |
+| **[osquery/osquery-go](https://github.com/osquery/osquery-go)** | [![Stars](https://img.shields.io/github/stars/osquery/osquery-go?style=social&color=white)](https://github.com/osquery/osquery-go/stargazers) | 💻 Official Go client bindings and SDK (Apache 2.0) for writing native osquery extensions, custom plugins, tables, and config plugins. |
+| **[trailofbits/osquery-extensions](https://github.com/trailofbits/osquery-extensions)** | [![Stars](https://img.shields.io/github/stars/trailofbits/osquery-extensions?style=social&color=white)](https://github.com/trailofbits/osquery-extensions/stargazers) | 🧩 Production-ready osquery extensions developed by Trail of Bits (Apache 2.0), introducing advanced table providers for forensic artifact extraction and system integrity checks. |
+| **[Kirtar22/ThreatHunting_with_Osquery](https://github.com/Kirtar22/ThreatHunting_with_Osquery)** | [![Stars](https://img.shields.io/github/stars/Kirtar22/ThreatHunting_with_Osquery?style=social&color=white)](https://github.com/Kirtar22/ThreatHunting_with_Osquery/stargazers) | 🎯 Comprehensive repository containing 100+ production-ready threat hunting SQL queries mapped directly to the MITRE ATT&CK framework across Windows and Linux environments. |
+
+---
+
+## 🏗️ Key Architectural Considerations
+
+1. ⏱️ **On-Demand Interrogation vs. Continuous Telemetry (EDR)**:
+   - **osquery** is explicitly designed for *periodic and on-demand queries*. Its maintainers note that it is not an event-driven kernel EDR replacement.
+   - Commercial platforms (CrowdStrike, SentinelOne, Microsoft Defender) maintain persistent kernel ring sensors logging continuous process trees and network flows, supporting both historical replay and live ad-hoc interrogation.
+2. 🔌 **Offline vs. Online Host Reachability**:
+   - Solutions like CrowdStrike Live Query and basic osquery setups can only interrogate machines that are currently active and connected to the network.
+   - Platforms like SentinelOne Deep Visibility and Microsoft Defender buffer historical sensor states in cloud telemetry lakes, facilitating retrospective hunts on disconnected or decommissioned machines.
+3. 🎛️ **Fleet Management Layer**:
+   - osquery is purely an endpoint agent. Operational enterprise deployment requires pairing it with a robust control plane (such as **FleetDM**) or integrating it into a comprehensive open-source XDR pipeline like **Wazuh**.
+
+---
+
+## 🤝 How to Contribute
+
+Contributions are always welcome! 🌟
+1. 🍴 Fork this repository.
+2. ✍️ Add or edit entries in `README.md` following the established table formats.
+3. 🔍 Ensure pricing, valuation metrics, and star counts are verifiable with authoritative sources.
+4. 🚀 Submit a Pull Request with a clear description of your additions.
+
+---
+
+## 💖 Support
+
+Thank you for visiting and supporting this project! If you found this curated ecosystem helpful:
+- ⭐ **Star this repository** to help others discover it.
+- 🍴 **Fork it** and build your own custom endpoint hunting stacks.
+- 📢 **Share it** with fellow threat hunters, SOC analysts, and security engineers.
+- ☕ If you'd like to support the ongoing maintenance and research behind this project, consider buying a coffee via the [GitHub Sponsor Dashboard](https://github.com/sponsors/ishandutta2007)! Every contribution is greatly appreciated.
+
+---
+
+## 📈 Star History
+
+[![Star History Chart](https://star-history.dera.page/svg?repos=ishandutta2007/Awesome-Real-Time-Endpoint-Query-Investigation&type=date&legend=top-left)](https://star-history.dera.page/#ishandutta2007/Awesome-Real-Time-Endpoint-Query-Investigation&type=date&legend=top-left)
+
+---
+
+## ⚠️ Disclaimer
+
+- 🛡️ This list is community-curated for informational, educational, and architectural evaluation purposes.
+- 🔑 System interrogation tools require privileged system-level permissions. Ensure proper authorization, access controls, and data privacy safeguards before executing distributed queries across production fleets.
+- 📊 Product pricing and corporate valuations reflect market conditions and vendor tier structures as of early 2026; consult vendors directly for official contractual quotes.

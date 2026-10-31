@@ -1,0 +1,184 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 340" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradients -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0f1d" />
+      <stop offset="50%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+
+    <linearGradient id="neonCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+
+    <linearGradient id="neonGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+
+    <linearGradient id="pillGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e293b" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.9" />
+    </linearGradient>
+
+    <!-- Glowing Filters -->
+    <filter id="glowCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <filter id="subtleGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+
+    <pattern id="cyberGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.8" opacity="0.6"/>
+    </pattern>
+
+    <style>
+      @keyframes radarSweep {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      @keyframes pulseGlow {
+        0%, 100% { opacity: 0.3; transform: scale(0.98); }
+        50% { opacity: 0.7; transform: scale(1.02); }
+      }
+      @keyframes floatSlow {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-7px); }
+      }
+      @keyframes floatReverse {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(7px); }
+      }
+      @keyframes packetFlow {
+        0% { stroke-dashoffset: 120; }
+        100% { stroke-dashoffset: 0; }
+      }
+      @keyframes pingEffect {
+        0% { r: 4; opacity: 1; }
+        100% { r: 18; opacity: 0; }
+      }
+
+      .radar-arm {
+        transform-origin: 1040px 170px;
+        animation: radarSweep 10s linear infinite;
+      }
+      .bg-pulse {
+        transform-origin: center;
+        animation: pulseGlow 6s ease-in-out infinite;
+      }
+      .card-float-1 {
+        animation: floatSlow 5s ease-in-out infinite;
+      }
+      .card-float-2 {
+        animation: floatReverse 6s ease-in-out infinite;
+      }
+      .stream-packet {
+        stroke-dasharray: 8 16;
+        animation: packetFlow 2.5s linear infinite;
+      }
+      .ping-circle {
+        animation: pingEffect 2s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="340" rx="16" fill="url(#bgGrad)" />
+  <rect width="1200" height="340" rx="16" fill="url(#cyberGrid)" />
+
+  <!-- Ambient Light Backdrops (Background Only) -->
+  <circle cx="150" cy="80" r="130" fill="#06b6d4" opacity="0.12" filter="url(#glowCyan)" class="bg-pulse" />
+  <circle cx="1040" cy="170" r="160" fill="#3b82f6" opacity="0.15" filter="url(#glowCyan)" class="bg-pulse" />
+
+  <!-- Dynamic Radar Background Graphic (Right-Aligned Behind Secondary Elements) -->
+  <g opacity="0.65">
+    <circle cx="1040" cy="170" r="120" fill="none" stroke="#334155" stroke-width="1.5" />
+    <circle cx="1040" cy="170" r="85" fill="none" stroke="#1e293b" stroke-width="1.5" stroke-dasharray="4 4" />
+    <circle cx="1040" cy="170" r="50" fill="none" stroke="#334155" stroke-width="1.5" />
+    <line x1="920" y1="170" x2="1160" y2="170" stroke="#334155" stroke-width="1" />
+    <line x1="1040" y1="50" x2="1040" y2="290" stroke="#334155" stroke-width="1" />
+
+    <!-- Radar Sweep Arm -->
+    <g class="radar-arm">
+      <path d="M 1040 170 L 1155 130 A 120 120 0 0 0 1040 50 Z" fill="url(#neonCyan)" opacity="0.18" />
+      <line x1="1040" y1="170" x2="1155" y2="130" stroke="#06b6d4" stroke-width="2" />
+    </g>
+
+    <!-- Radar Target Nodes -->
+    <circle cx="1085" cy="120" r="4" fill="#10b981" />
+    <circle cx="1085" cy="120" r="4" fill="none" stroke="#10b981" class="ping-circle" />
+
+    <circle cx="990" cy="210" r="3.5" fill="#06b6d4" />
+    <circle cx="1060" cy="230" r="3" fill="#38bdf8" />
+  </g>
+
+  <!-- Flowing Telemetry Streams (Background Dynamic Lines) -->
+  <path d="M 50 300 Q 300 240 580 300 T 1150 290" fill="none" stroke="#0284c7" stroke-width="2" opacity="0.3" class="stream-packet" />
+  <path d="M 50 315 Q 350 280 680 320 T 1180 310" fill="none" stroke="#10b981" stroke-width="1.5" opacity="0.25" class="stream-packet" />
+
+  <!-- Animated Floating Dynamic Indicator Cards (Positioned lower right, non-overlapping) -->
+  <g class="card-float-1" transform="translate(730, 60)">
+    <rect width="195" height="54" rx="10" fill="url(#pillGrad)" stroke="#38bdf8" stroke-width="1" opacity="0.9" />
+    <circle cx="22" cy="27" r="7" fill="#10b981" filter="url(#subtleGlow)" />
+    <circle cx="22" cy="27" r="7" fill="none" stroke="#10b981" class="ping-circle" />
+    <text x="38" y="24" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" letter-spacing="0.5">FLEET STATUS</text>
+    <text x="38" y="42" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">100k+ Live Nodes</text>
+  </g>
+
+  <g class="card-float-2" transform="translate(750, 195)">
+    <rect width="190" height="54" rx="10" fill="url(#pillGrad)" stroke="#06b6d4" stroke-width="1" opacity="0.9" />
+    <circle cx="22" cy="27" r="6" fill="#06b6d4" filter="url(#subtleGlow)" />
+    <text x="38" y="24" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="600" letter-spacing="0.5">LIVE QUERY ENGINE</text>
+    <text x="38" y="42" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700">&lt; 1s Distributed SQL</text>
+  </g>
+
+  <!-- FOREGROUND: Clean, crisp, high-contrast typography and badges -->
+  <g transform="translate(60, 0)">
+    <!-- Top Meta Tag / Pill -->
+    <g transform="translate(0, 48)">
+      <rect width="260" height="28" rx="14" fill="#1e293b" stroke="#334155" stroke-width="1" />
+      <circle cx="16" cy="14" r="5" fill="#06b6d4" />
+      <text x="30" y="19" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" font-weight="700" letter-spacing="1">REAL-TIME ENDPOINT QUERY</text>
+    </g>
+
+    <!-- Main Title -->
+    <text x="0" y="125" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="40" font-weight="900" letter-spacing="-0.8">
+      Real-Time Endpoint Query
+    </text>
+    <text x="0" y="172" fill="url(#neonCyan)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="36" font-weight="800" letter-spacing="-0.5">
+      &amp; Live Fleet Investigation
+    </text>
+
+    <!-- Subtitle / Tagline -->
+    <text x="0" y="218" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15.5" font-weight="400">
+      Curated ecosystem of SaaS platforms &amp; open-source tooling for osquery orchestration,
+    </text>
+    <text x="0" y="242" fill="#cbd5e1" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="500">
+      distributed threat hunting, live incident response (DFIR), and fleet-wide visibility.
+    </text>
+
+    <!-- Capability Tags in Foreground -->
+    <g transform="translate(0, 275)">
+      <!-- Tag 1 -->
+      <rect x="0" y="0" width="108" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8"/>
+      <text x="12" y="17" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">⚡ osquery</text>
+
+      <!-- Tag 2 -->
+      <rect x="118" y="0" width="138" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8"/>
+      <text x="130" y="17" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">🎯 Threat Hunting</text>
+
+      <!-- Tag 3 -->
+      <rect x="266" y="0" width="128" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8"/>
+      <text x="278" y="17" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">🛡️ Live DFIR</text>
+
+      <!-- Tag 4 -->
+      <rect x="404" y="0" width="156" height="26" rx="6" fill="#1e293b" stroke="#475569" stroke-width="0.8"/>
+      <text x="416" y="17" fill="#e2e8f0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="600">🔍 Fleet Telemetry</text>
+    </g>
+  </g>
+</svg>
