@@ -63,7 +63,7 @@ The following hosted commercial platforms provide fleet-scale live query interro
 
 The open-source endpoint query landscape is anchored by **osquery** and high-speed DFIR incident response agents. Sorted descending by GitHub stargazers count:
 
-| Repository 📦 | GitHub Stars ⭐ | Primary Purpose & Description 🚀 |
+| Repository 📦 | GitHub_Stars ⭐ | Primary Purpose & Description 🚀 |
 | :--- | :--- | :--- |
 | **[osquery/osquery](https://github.com/osquery/osquery)** | [![Stars](https://img.shields.io/github/stars/osquery/osquery?style=social&color=white)](https://github.com/osquery/osquery/stargazers) | ⚡ Foundational open-source endpoint instrumentation agent (Apache 2.0 / GPL 2.0). Exposes operating system internals (processes, open sockets, installed software, logged-in users) as high-performance SQL tables. |
 | **[wazuh/wazuh](https://github.com/wazuh/wazuh)** | [![Stars](https://img.shields.io/github/stars/wazuh/wazuh?style=social&color=white)](https://github.com/wazuh/wazuh/stargazers) | 🛡️ Unified open-source XDR, SIEM, and endpoint security monitoring platform (GPL 2.0). Features built-in osquery integration, live command execution, file integrity monitoring (FIM), and incident response rules. |
@@ -96,7 +96,7 @@ The open-source endpoint query landscape is anchored by **osquery** and high-spe
 Contributions are always welcome! 🌟
 1. 🍴 Fork this repository.
 2. ✍️ Add or edit entries in `README.md` following the established table formats.
-3. 🔍 Ensure pricing, valuation metrics, and star counts are verifiable with authoritative sources.
+3. 🔍 Ensure pricing, valuation metrics, and Stars_Counts are verifiable with authoritative sources.
 4. 🚀 Submit a Pull Request with a clear description of your additions.
 
 ---
